@@ -81,3 +81,14 @@ Define RBAC apiVersion
 {{ "rbac.authorization.k8s.io/v1beta1" }}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Define PodDisruptionBudget apiVersion
+*/}}
+{{- define "ambassador.podDisruptionBudgetAPIVersion" -}}
+{{- if .Capabilities.APIVersions.Has "poddisruptionbudgets.policy/v1" -}}
+{{ "policy/v1" }}
+{{- else -}}
+{{ "policy/v1beta1" }}
+{{- end -}}
+{{- end -}}
