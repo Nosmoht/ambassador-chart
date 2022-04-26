@@ -70,3 +70,14 @@ Define the http port of the Ambassador service
 {{- end -}}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Define RBAC apiVersion
+*/}}
+{{- define "ambassador.rbacAPIVersion" -}}
+{{- if .Capabilities.APIVersions.Has "rbac.authorization.k8s.io/v1" -}}
+{{ "rbac.authorization.k8s.io/v1" }}
+{{- else -}}
+{{ "rbac.authorization.k8s.io/v1beta1" }}
+{{- end -}}
+{{- end -}}

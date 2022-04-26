@@ -18,7 +18,7 @@ metadata:
     {{- end }}
     product: aes
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: {{ include "ambassador.rbacAPIVersion" . }}
 kind: RoleBinding
 metadata:
   name: {{ include "ambassador.fullname" . }}-agent-config
@@ -43,7 +43,7 @@ subjects:
   name: {{ include "ambassador.fullname" . }}-agent
   namespace: {{ include "ambassador.namespace" . }}
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: {{ include "ambassador.rbacAPIVersion" . }}
 kind: Role
 metadata:
   name: {{ include "ambassador.fullname" . }}-agent-config
@@ -64,7 +64,7 @@ rules:
   resources: [ "configmaps" ]
   verbs: [ "get", "list", "watch" ]
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: {{ include "ambassador.rbacAPIVersion" . }}
 kind: ClusterRoleBinding
 metadata:
   name: {{ include "ambassador.fullname" . }}-agent
@@ -88,7 +88,7 @@ subjects:
   name: {{ include "ambassador.fullname" . }}-agent
   namespace: {{ include "ambassador.namespace" . }}
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: {{ include "ambassador.rbacAPIVersion" . }}
 kind: ClusterRole
 metadata:
   name: {{ include "ambassador.fullname" . }}-agent
